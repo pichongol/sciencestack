@@ -6,3 +6,18 @@ body {
 td.actions {
 	width: 10%;
 }
+
+.search-parent-topic-form-group, .search-child-topic-form-group  {
+	width: 50%;
+	float:left;
+}
+
+#parent-topics-list, #child-topics-list  {
+	float: right;
+	width: 50%;
+	padding-left: 50px;
+}
+
+.parent-topic-option, .child-topic-option  {
+	margin-bottom: 5px;
+}

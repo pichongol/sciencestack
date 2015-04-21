@@ -47,13 +47,31 @@ class TopicsController extends AdminController {
 
 	public function edit($id) {
 		$Topics = TableRegistry::get("Topics");
+		$TopicsRelationships = TableRegistry::get("TopicsRelationships");
 
 		if($this->request->data){
-			$topic = new Topic($this->request->data);
+
+			$TopicsRelationships->deleteAll([
+			    'child_topic_id' => $id,
+			    'OR' => [['parent_topic_id' => $id]],
+			]);
+
+			$topic = $Topics->newEntity($this->request->data(), [
+				'associated' => [
+			        'ParentTopics',
+			        'ChildTopics'
+			   	]
+			]);
+
+			//print_r($topic); exit;
 			$Topics->save($topic);
 		}
 
-		$topic = $Topics->find()->where(['id' => $id])->first();
+		$query = $Topics->find()->where(['id' => $id]);
+		$query->contain(['ChildTopics', 'ParentTopics']);
+		$topic = $query->first();
+
+		//print_r($topic); exit;
 
 		$Categories = TableRegistry::get("Categories");
 		$query = $Categories->find()->all();
@@ -89,7 +107,12 @@ class TopicsController extends AdminController {
 			$topics = $query->toArray();
 		}
 
-		$this->set('data', $topics);
+		$output = [];
+		foreach ($topics as $value) {
+			$output[] = array("label" => $value->name, "value" => $value->id);
+		}
+
+		$this->set('data', $output);
     	$this->set('_serialize', 'data');
     }
 }

@@ -12,15 +12,15 @@ class TopicsTable extends Table {
 		$this->belongsToMany('ChildTopics', [
 			'className' => "Topics",
 			'through' => 'TopicsRelationships',
-			'targetForeignKey' => 'foreign_topic_id',
-            'conditions' => ['type' => 'parent'],
+			'foreignKey' => 'parent_topic_id',
+			'targetForeignKey' => 'child_topic_id',
         ]);
 
 		$this->belongsToMany('ParentTopics', [
 			'className' => "Topics",
 			'through' => 'TopicsRelationships',
-			'targetForeignKey' => 'foreign_topic_id',
-            'conditions' => ['type' => 'child'],
+			'foreignKey' => 'child_topic_id',
+			'targetForeignKey' => 'parent_topic_id',
         ]);
     }
 
