@@ -27,7 +27,6 @@
   <div class="form-group">
     <? echo $this->Form->input('development_end_date', ['class' => 'form-control', 'empty' => true, 'default' => '']); ?>
   </div>
-
   <hr />
 
   <div class="form-group search-parent-topic-form-group">
@@ -69,6 +68,7 @@
 
   <div style="clear:both"></div>
 
+  <hr />
   <button type="submit" class="btn btn-default">Edit Topic</button>
 
 <?= $this->Form->end(); ?>

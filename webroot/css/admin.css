@@ -7,21 +7,25 @@ td.actions {
 	width: 10%;
 }
 
-.search-parent-topic-form-group, .search-child-topic-form-group  {
+.search-parent-topic-form-group, .search-child-topic-form-group, .search-related-topic-form-group  {
 	width: 50%;
 	float:left;
 }
 
-#parent-topics-list, #child-topics-list  {
+#parent-topics-list, #child-topics-list, #related-topics-list  {
 	float: right;
 	width: 50%;
 	padding-left: 50px;
 }
 
-.parent-topic-option, .child-topic-option  {
+.parent-topic-option, .child-topic-option, .related-topic-option   {
 	margin-bottom: 5px;
 }
 
 .date label {
 	padding-right: 5px;
+}
+
+.related-topic-div {
+	padding-bottom: 10px;
 }

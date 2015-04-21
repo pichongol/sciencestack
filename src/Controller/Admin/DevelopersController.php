@@ -6,6 +6,7 @@ use Cake\ORM\TableRegistry;
 use App\Model\Entity\Developer;
 
 class DevelopersController extends AdminController {
+    public $helpers = array('Time');
 
 	public function initialize(){
     	$this->loadComponent('RequestHandler');
@@ -35,15 +36,19 @@ class DevelopersController extends AdminController {
 
 		$this->set("countries", $countries);
 		$this->set("developer", $developer);
-        //return $this->redirect("/admin/developers/edit/");
     }
 
 	public function edit($id) {
 		$Developers = TableRegistry::get("Developers");
+		$TopicsDevelopers = TableRegistry::get("TopicsDevelopers");
 
 		if($this->request->data){
+			$TopicsDevelopers->deleteAll([
+			    'developer_id' => $id
+			]);
+
 			$developer = $Developers->newEntity($this->request->data(), [
-				'associated' => [
+				'associated' => ['Topics'
 			   	]
 			]);
 
@@ -53,6 +58,7 @@ class DevelopersController extends AdminController {
 		$countries = getCountries();
 
 		$query = $Developers->find()->where(['id' => $id]);
+		$query->contain(['Topics']);
 		$developer = $query->first();
 
 		$this->set("countries", $countries);

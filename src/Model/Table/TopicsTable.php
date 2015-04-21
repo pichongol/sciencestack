@@ -22,6 +22,8 @@ class TopicsTable extends Table {
 			'foreignKey' => 'child_topic_id',
 			'targetForeignKey' => 'parent_topic_id',
         ]);
+
+		$this->belongsToMany('Developers');
     }
 
 }

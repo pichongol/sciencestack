@@ -63,15 +63,12 @@ class TopicsController extends AdminController {
 			   	]
 			]);
 
-			//print_r($topic); exit;
 			$Topics->save($topic);
 		}
 
 		$query = $Topics->find()->where(['id' => $id]);
 		$query->contain(['ChildTopics', 'ParentTopics']);
 		$topic = $query->first();
-
-		//print_r($topic); exit;
 
 		$Categories = TableRegistry::get("Categories");
 		$query = $Categories->find()->all();
