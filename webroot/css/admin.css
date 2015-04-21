@@ -21,3 +21,7 @@ td.actions {
 .parent-topic-option, .child-topic-option  {
 	margin-bottom: 5px;
 }
+
+.date label {
+	padding-right: 5px;
+}

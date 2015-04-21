@@ -8,13 +8,24 @@
   <div class="form-group">
     <? echo $this->Form->input('name', ['class' => 'form-control']); ?>
   </div>
+  <hr />
   <div class="form-group">
     <? echo $this->Form->label('text', 'Description'); ?>
     <? echo $this->Form->textarea('text', ['class' => 'form-control']); ?>
   </div>
+  <hr />
   <div class="form-group">
     <? echo $this->Form->label('text', 'Category'); ?>
     <? echo $this->Form->select('category', $categoryOptions, ['class' => 'form-control']); ?>
+  </div>
+  <hr />
+  <div class="form-group">
+    <? echo $this->Form->input('development_start_date', ['class' => 'form-control', 'empty' => true, 'default' => '']); ?>
+  </div>
+  <hr />
+
+  <div class="form-group">
+    <? echo $this->Form->input('development_end_date', ['class' => 'form-control', 'empty' => true, 'default' => '']); ?>
   </div>
 
   <hr />

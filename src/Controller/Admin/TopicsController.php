@@ -27,7 +27,7 @@ class TopicsController extends AdminController {
 		$Topics = TableRegistry::get("Topics");
 
 		if($this->request->data){
-			$topic = new Topic($this->request->data);
+			$topic = $Topics->newEntity($this->request->data);
 			$Topics->save($topic);
 		}
 
@@ -88,10 +88,9 @@ class TopicsController extends AdminController {
 
 	public function delete($id) {
 		$Topics = TableRegistry::get("Topics");
-		$topicId = $this->request->params['pass'][0];
 
 		if($topicId){
-			$topic = $Topics->find()->where(['id' => $topicId])->first();
+			$topic = $Topics->find()->where(['id' => $id])->first();
 			$Topics->delete($topic);
 		}
 

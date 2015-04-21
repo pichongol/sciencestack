@@ -41,7 +41,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/admin/topics">Topics</a></li>
-            <li><a href="/admin/categories">Categories</a></li>
+            <li><a href="/admin/categories">Topics Categories</a></li>
+            <li><a href="/admin/developers">Developers</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
