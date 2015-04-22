@@ -36,6 +36,7 @@ class AppController extends Controller
      */
     public function initialize()
     {
+        $this->layout = "default";
         $this->loadComponent('Flash');
     }
 }

@@ -2,7 +2,7 @@
 var relatedTopics = [];
 </script>
 
-<? echo $this->Form->create($developer); ?>
+<? echo $this->Form->create($developer, ['enctype' => 'multipart/form-data']); ?>
   <? echo $this->Form->input('id', ['type' => 'hidden']); ?>
   <div class="form-group">
     <? echo $this->Form->input('first_name', ['class' => 'form-control']); ?>
@@ -12,6 +12,14 @@ var relatedTopics = [];
     <? echo $this->Form->input('last_name', ['class' => 'form-control']); ?>
   </div>
   <hr />
+
+  <div class="form-group">
+    <? echo $this->Form->label('submittedfile', 'Image'); ?>
+    <? echo $this->Form->file('submittedfile'); ?>
+    <img src="/img/developers/<?=$developer->id?>.jpg" />
+  </div>
+  <hr />
+
   <div class="form-group">
     <? echo $this->Form->label('biography', 'Biography'); ?>
     <? echo $this->Form->textarea('biography', ['class' => 'form-control']); ?>

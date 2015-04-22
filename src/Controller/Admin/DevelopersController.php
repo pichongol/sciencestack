@@ -52,6 +52,17 @@ class DevelopersController extends AdminController {
 			   	]
 			]);
 
+			if(!empty($this->request->data['submittedfile']['name'])){
+	            $file = $this->request->data['submittedfile'];
+
+	            $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+	            $arr_ext = array('jpg'); //set allowed extensions
+
+	            if(in_array($ext, $arr_ext)){
+	                move_uploaded_file($file['tmp_name'], WWW_ROOT."img/developers/{$id}.{$ext}");
+	            }
+	        }
+
 			$Developers->save($developer);
 		}
 

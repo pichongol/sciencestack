@@ -36,12 +36,12 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">ScienceStack Admin</a>
+          <a class="navbar-brand" href="/">ScienceStack Admin</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/admin/topics">Topics</a></li>
-            <li><a href="/admin/categories">Topics Categories</a></li>
+            <li><a href="/admin/categories">Topic Categories</a></li>
             <li><a href="/admin/developers">Developers</a></li>
           </ul>
         </div><!--/.nav-collapse -->
