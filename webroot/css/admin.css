@@ -7,25 +7,39 @@ td.actions {
 	width: 10%;
 }
 
-.search-parent-topic-form-group, .search-child-topic-form-group, .search-related-topic-form-group  {
+.search-parent-project-form-group, .search-child-project-form-group, .search-related-project-form-group  {
 	width: 50%;
 	float:left;
 }
 
-#parent-topics-list, #child-topics-list, #related-topics-list  {
+#parent-projects-list, #child-projects-list, #related-projects-list  {
 	float: right;
 	width: 50%;
 	padding-left: 50px;
 }
 
-.parent-topic-option, .child-topic-option, .related-topic-option   {
+.parent-project-option, .child-project-option, .related-project-option   {
 	margin-bottom: 5px;
+}
+
+.related-project-option {
+	font-weight: bold;
 }
 
 .date label {
 	padding-right: 5px;
 }
 
-.related-topic-div {
+.related-project-div {
 	padding-bottom: 10px;
+}
+
+.related-project-div label {
+	font-weight: normal;
+	font-size: 11px;	
+	margin-top: 10px;
+}
+
+.related-project-div select {
+	margin-top: 0px;
 }

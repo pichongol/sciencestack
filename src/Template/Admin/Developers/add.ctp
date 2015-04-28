@@ -16,12 +16,21 @@
   <hr />
 
   <div class="form-group">
-    <? echo $this->Form->input('born_date', ['class' => 'form-control', 'empty' => true, 'default' => '']); ?>
+    <?
+    echo $this->Form->label('gender', 'Gender');
+    $options = ['M' => 'Male', 'F' => 'Female'];
+    echo $this->Form->select('gender', $options, ['class' => 'form-control', 'empty' => true]);
+    ?>
   </div>
   <hr />
 
   <div class="form-group">
-    <? echo $this->Form->input('died_date', ['class' => 'form-control', 'empty' => true, 'default' => '']); ?>
+    <? echo $this->Form->input('born_date', ['class' => 'form-control', 'empty' => true, 'default' => '', 'minYear' => 1300, 'maxYear' => date('Y')]); ?>
+  </div>
+  <hr />
+
+  <div class="form-group">
+    <? echo $this->Form->input('died_date', ['class' => 'form-control', 'empty' => true, 'default' => '', 'minYear' => 1300, 'maxYear' => date('Y')]); ?>
   </div>
   <hr />
 

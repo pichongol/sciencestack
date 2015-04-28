@@ -9,8 +9,8 @@ class DevelopersTable extends Table {
     public function initialize(array $config) {
 		$this->addBehavior('Timestamp');
 
-		$this->belongsToMany('Topics', [
-			'joinTable' => 'topics_developers',
+		$this->belongsToMany('Projects', [
+			'joinTable' => 'projects_developers',
         ]);
     }
 

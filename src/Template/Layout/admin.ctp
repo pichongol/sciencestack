@@ -40,8 +40,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/admin/topics">Topics</a></li>
-            <li><a href="/admin/categories">Topic Categories</a></li>
+            <li><a href="/admin/projects">Projects</a></li>
+            <li><a href="/admin/categories">Project Categories</a></li>
             <li><a href="/admin/developers">Developers</a></li>
           </ul>
         </div><!--/.nav-collapse -->

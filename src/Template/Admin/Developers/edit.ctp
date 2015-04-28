@@ -1,6 +1,9 @@
 <script>
-var relatedTopics = [];
+var relatedProjects = [];
+var roles = <?=json_encode($roles);?>
 </script>
+
+<? //print_r($developer); exit; ?>
 
 <? echo $this->Form->create($developer, ['enctype' => 'multipart/form-data']); ?>
   <? echo $this->Form->input('id', ['type' => 'hidden']); ?>
@@ -27,12 +30,21 @@ var relatedTopics = [];
   <hr />
 
   <div class="form-group">
-    <? echo $this->Form->input('born_date', ['class' => 'form-control', 'empty' => true, 'default' => '']); ?>
+    <?
+    echo $this->Form->label('gender', 'Gender');
+    $options = ['M' => 'Male', 'F' => 'Female'];
+    echo $this->Form->select('gender', $options, ['class' => 'form-control', 'empty' => true]);
+    ?>
   </div>
   <hr />
 
   <div class="form-group">
-    <? echo $this->Form->input('died_date', ['class' => 'form-control', 'empty' => true, 'default' => '']); ?>
+    <? echo $this->Form->input('born_date', ['class' => 'form-control', 'empty' => true, 'default' => '', 'minYear' => 1300, 'maxYear' => date('Y')]); ?>
+  </div>
+  <hr />
+
+  <div class="form-group">
+    <? echo $this->Form->input('died_date', ['class' => 'form-control', 'empty' => true, 'default' => '', 'minYear' => 1300, 'maxYear' => date('Y')]); ?>
   </div>
   <hr />
 
@@ -42,18 +54,18 @@ var relatedTopics = [];
   </div>
   <hr />
 
-  <div class="form-group search-related-topic-form-group">
-    <? echo $this->Form->input('search-related-topic', ['class' => 'form-control']); ?>
+  <div class="form-group search-related-project-form-group">
+    <? echo $this->Form->input('search-related-project', ['class' => 'form-control']); ?>
   </div>
 
-  <div id="related-topics-list"></div>
+  <div id="related-projects-list"></div>
 
-  <div id="related-topics-inputs">
+  <div id="related-projects-inputs">
   <? 
   $i=0;
-  foreach($developer['topics'] as $t){
-    echo $this->Form->input('topics.'.$i.'.id', ['type'=>'hidden']);
-    echo '<script>relatedTopics.push({id:'.$t["id"].',label:"'.$t['name'].'", start_date:"'.$this->Time->format($t['_joinData']->start_date, 'Y/M/d').'", end_date:"'.$this->Time->format($t['_joinData']->end_date, 'Y/M/d').'"});</script>';
+  foreach($developer['projects'] as $t){
+    echo $this->Form->input('projects.'.$i.'.id', ['type'=>'hidden']);
+    echo '<script>relatedProjects.push({id:'.$t["id"].',label:"'.$t['name'].'", start_date:"'.$this->Time->format($t['_joinData']->start_date, 'Y/M/d').'", end_date:"'.$this->Time->format($t['_joinData']->end_date, 'Y/M/d').'", rol_id:"'.$t['_joinData']->rol_id.'", finished_year:"'.$t['_joinData']->finished_year.'"});</script>';
     $i++;
   } 
   ?>

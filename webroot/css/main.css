@@ -7,3 +7,43 @@ body {
 h1 {
 	border-bottom: 1px solid #aaa
 }
+
+a {
+	color:blue;
+}
+
+.developer-profile-sidebar img {
+	width: 100%;
+}
+
+.developer-profile-sidebar .developer-img {
+	text-align: center;
+	font-weight: bold;
+}
+
+.developer-title-main {
+	margin-bottom: 0;
+}
+
+.developer-life-dates {
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.developer-main {
+	padding-left: 0px;
+}
+
+.developer-projects-title span {
+	font-size: 12px;
+}
+
+.developer-project-name {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.developer-other-people {
+	font-weight: bold;
+	margin-top: 10px;
+}

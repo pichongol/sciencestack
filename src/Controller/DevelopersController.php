@@ -23,11 +23,21 @@ class DevelopersController extends AppController {
 
 	public function view($id) {
 		$Developers = TableRegistry::get("Developers");
+		$ProjectsDevelopers = TableRegistry::get("ProjectsDevelopers");
 
 		$query = $Developers->find()->where(['id' => $id]);
-		$query->contain(['Topics']);
+		$query->contain(['Projects']);
 		$developer = $query->first();
 
+		foreach ($developer->projects as &$project) {
+			$project->developers = $ProjectsDevelopers->getDevelopersInSameProject($project->id, $id);
+		}
+
+		$countries = getCountries();
+		$roles = getRoles();
+
+		$this->set("countries", $countries);
+		$this->set("roles", $roles);
 		$this->set("developer", $developer);
     }
 }

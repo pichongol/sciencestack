@@ -29,6 +29,18 @@ class DevelopersController extends AdminController {
 		if($this->request->data){
 			$developer = $Developers->newEntity($this->request->data);
 			$Developers->save($developer);
+
+			if(!empty($this->request->data['submittedfile']['name'])){
+	            $file = $this->request->data['submittedfile'];
+
+	            $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+	            $arr_ext = array('jpg'); //set allowed extensions
+
+	            if(in_array($ext, $arr_ext)){
+	                move_uploaded_file($file['tmp_name'], WWW_ROOT."img/developers/{$id}.{$ext}");
+	                $developer->image = 1;
+	            }
+	        }
 		}
 
 		$developer = new Developer();
@@ -40,15 +52,15 @@ class DevelopersController extends AdminController {
 
 	public function edit($id) {
 		$Developers = TableRegistry::get("Developers");
-		$TopicsDevelopers = TableRegistry::get("TopicsDevelopers");
+		$ProjectsDevelopers = TableRegistry::get("ProjectsDevelopers");
 
 		if($this->request->data){
-			$TopicsDevelopers->deleteAll([
+			$ProjectsDevelopers->deleteAll([
 			    'developer_id' => $id
 			]);
 
 			$developer = $Developers->newEntity($this->request->data(), [
-				'associated' => ['Topics'
+				'associated' => ['Projects'
 			   	]
 			]);
 
@@ -60,6 +72,7 @@ class DevelopersController extends AdminController {
 
 	            if(in_array($ext, $arr_ext)){
 	                move_uploaded_file($file['tmp_name'], WWW_ROOT."img/developers/{$id}.{$ext}");
+	                $developer->image = 1;
 	            }
 	        }
 
@@ -67,12 +80,14 @@ class DevelopersController extends AdminController {
 		}
 
 		$countries = getCountries();
+		$roles = getRoles();
 
 		$query = $Developers->find()->where(['id' => $id]);
-		$query->contain(['Topics']);
+		$query->contain(['Projects']);
 		$developer = $query->first();
 
 		$this->set("countries", $countries);
+		$this->set("roles", $roles);
 		$this->set("developer", $developer);
     }
 

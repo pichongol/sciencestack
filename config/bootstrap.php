@@ -444,3 +444,11 @@ function getCountries(){
         'ZW' => 'Zimbabwe',
     );
 }
+
+function getRoles(){
+    return array(
+        0 => 'Select Rol',
+        1 => 'Inventor',
+        2 => 'Investigator',
+    );
+}

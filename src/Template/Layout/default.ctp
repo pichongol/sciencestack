@@ -40,8 +40,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/topics">Topics By Year</a></li>
-            <li><a href="/topics_by_year">Topics By Year</a></li>
+            <li><a href="#">Physics</a></li>
+            <li><a href="#">Chemistry</a></li>
+            <li><a href="#">Mathematics</a></li>
+            <li><a href="/topics">Projects By Year</a></li>
+            <li><a href="/topics_by_year">Projects By Field</a></li>
             <li><a href="/developers">Developers</a></li>
           </ul>
         </div><!--/.nav-collapse -->

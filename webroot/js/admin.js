@@ -1,55 +1,55 @@
 $(document).ready(function() {
-	$("#search-parent-topic").autocomplete({
-		source: "/admin/topics/search.json",
+	$("#search-parent-project").autocomplete({
+		source: "/admin/projects/search.json",
 		select: function( event, ui ) {
-			var newTopic = {id:ui.item.value, label:ui.item.label};
-			parentTopics.push(newTopic);
-			renderParentTopics();
-			$("#search-parent-topic").val('');
+			var newProject = {id:ui.item.value, label:ui.item.label};
+			parentProjects.push(newProject);
+			renderParentProjects();
+			$("#search-parent-project").val('');
 			return false;
 		}
 	});
 
-	$("#search-child-topic").autocomplete({
-		source: "/admin/topics/search.json",
+	$("#search-child-project").autocomplete({
+		source: "/admin/projects/search.json",
 		select: function( event, ui ) {
-			var newTopic = {id:ui.item.value, label:ui.item.label};
-			childTopics.push(newTopic);
-			renderChildTopics();
-			$("#search-child-topic").val('');
+			var newProject = {id:ui.item.value, label:ui.item.label};
+			childProjects.push(newProject);
+			renderChildProjects();
+			$("#search-child-project").val('');
 			return false;
 		}
 	});
 
-	$("#search-related-topic").autocomplete({
-		source: "/admin/topics/search.json",
+	$("#search-related-project").autocomplete({
+		source: "/admin/projects/search.json",
 		select: function( event, ui ) {
-			var newTopic = {id:ui.item.value, label:ui.item.label};
-			relatedTopics.push(newTopic);
-			renderRelatedTopics();
-			$("#search-related-topic").val('');
+			var newProject = {id:ui.item.value, label:ui.item.label};
+			relatedProjects.push(newProject);
+			renderRelatedProjects();
+			$("#search-related-project").val('');
 			return false;
 		}
 	});
 
-	renderParentTopics();
-	renderChildTopics();
-	renderRelatedTopics();
+	renderParentProjects();
+	renderChildProjects();
+	renderRelatedProjects();
 });
 
-$(document).on('click', '.parent-topic-option', function(){
-	if( confirm("Remove Parent Topic?") ){
-		var parentTopicId = $(this).attr("pt-id");
-		removeParentTopic(parentTopicId);
-		renderParentTopics();
+$(document).on('click', '.parent-project-option', function(){
+	if( confirm("Remove Parent Project?") ){
+		var parentProjectId = $(this).attr("pt-id");
+		removeParentProject(parentProjectId);
+		renderParentProjects();
 	} 
 });
 
-$(document).on('click', '.related-topic-option', function(){
-	if( confirm("Remove Related Topic?") ){
-		var relatedTopicId = $(this).attr("t-id");
-		removeRelatedTopic(relatedTopicId);
-		renderRelatedTopics();
+$(document).on('click', '.related-project-option', function(){
+	if( confirm("Remove Related Project?") ){
+		var relatedProjectId = $(this).attr("t-id");
+		removeRelatedProject(relatedProjectId);
+		renderRelatedProjects();
 	} 
 });
 
@@ -61,92 +61,108 @@ function split( val ) {
 	return val.split( /,\s*/ );
 }
 
-function renderParentTopics(){
-	if( typeof parentTopics === 'undefined') return false;
+function renderParentProjects(){
+	if( typeof parentProjects === 'undefined') return false;
 
-	$('#parent-topics-list').html('');
-	for(var i=0; i<parentTopics.length; i++){
-		$('#parent-topics-list').append('<p class="parent-topic-option" pt-id="'+parentTopics[i].id+'">'+parentTopics[i].label+"</p>");
+	$('#parent-projects-list').html('');
+	for(var i=0; i<parentProjects.length; i++){
+		$('#parent-projects-list').append('<p class="parent-project-option" pt-id="'+parentProjects[i].id+'">'+parentProjects[i].label+"</p>");
 	}
 
-	$('#parent-topics-inputs').html('');
-	for(var i=0; i<parentTopics.length; i++){
-		$('#parent-topics-inputs').append('<input id="parent-topics-'+i+'-id" type="hidden" value="'+parentTopics[i].id+'" name="parent_topics['+i+'][id]">');
+	$('#parent-projects-inputs').html('');
+	for(var i=0; i<parentProjects.length; i++){
+		$('#parent-projects-inputs').append('<input id="parent-projects-'+i+'-id" type="hidden" value="'+parentProjects[i].id+'" name="parent_projects['+i+'][id]">');
 	}
 }
 
-function removeParentTopic(parentTopicId){
+function removeParentProject(parentProjectId){
 	var pos = -1;
-	for(var i=0; i<parentTopics.length; i++){
-		if(parentTopics[i].id == parentTopicId){
+	for(var i=0; i<parentProjects.length; i++){
+		if(parentProjects[i].id == parentProjectId){
 			pos = i;
 		}
 	}
 
 	if(pos != -1){
-		parentTopics.splice(pos, 1);
+		parentProjects.splice(pos, 1);
 	}
 }
 
-function renderChildTopics(){
-	if( typeof childTopics === 'undefined') return false;
+function renderChildProjects(){
+	if( typeof childProjects === 'undefined') return false;
 
-	$('#child-topics-list').html('');
-	for(var i=0; i<childTopics.length; i++){
-		$('#child-topics-list').append('<p class="child-topic-option" pt-id="'+childTopics[i].id+'">'+childTopics[i].label+"</p>");
+	$('#child-projects-list').html('');
+	for(var i=0; i<childProjects.length; i++){
+		$('#child-projects-list').append('<p class="child-project-option" pt-id="'+childProjects[i].id+'">'+childProjects[i].label+"</p>");
 	}
 
-	$('#child-topics-inputs').html('');
-	for(var i=0; i<childTopics.length; i++){
-		$('#child-topics-inputs').append('<input id="child-topics-'+i+'-id" type="hidden" value="'+childTopics[i].id+'" name="child_topics['+i+'][id]">');
+	$('#child-projects-inputs').html('');
+	for(var i=0; i<childProjects.length; i++){
+		$('#child-projects-inputs').append('<input id="child-projects-'+i+'-id" type="hidden" value="'+childProjects[i].id+'" name="child_projects['+i+'][id]">');
 	}
 }
 
-function removeChildTopic(childTopicId){
+function removeChildProject(childProjectId){
 	var pos = -1;
-	for(var i=0; i<childTopics.length; i++){
-		if(childTopics[i].id == childTopicId){
+	for(var i=0; i<childProjects.length; i++){
+		if(childProjects[i].id == childProjectId){
 			pos = i;
 		}
 	}
 
 	if(pos != -1){
-		childTopics.splice(pos, 1);
+		childProjects.splice(pos, 1);
 	}
 }
 
-function renderRelatedTopics(){
-	if( typeof relatedTopics === 'undefined') return false;
+function renderRelatedProjects(){
+	if( typeof relatedProjects === 'undefined') return false;
 
-	$('#related-topics-list').html('');
+	$('#related-projects-list').html('');
 	var elem = '';
-	for(var i=0; i<relatedTopics.length; i++){
+	for(var i=0; i<relatedProjects.length; i++){
+		var start_date = (relatedProjects[i].start_date) ? relatedProjects[i].start_date : '';
+		var end_date = (relatedProjects[i].end_date) ? relatedProjects[i].end_date : '';
+		var finished_year = (relatedProjects[i].finished_year) ? relatedProjects[i].finished_year : '';
+		var rol_id = (relatedProjects[i].rol_id) ? relatedProjects[i].rol_id : '';
 
-		elem = '<div class="related-topic-div">'+
-			   '<p class="related-topic-option" t-id="'+relatedTopics[i].id+'">'+relatedTopics[i].label+'</p>'+
-			   '<input placeholder="Dev Start Date" value="'+relatedTopics[i].start_date+'" class="development-start-date" type="text" id="topics-'+i+'-joindata-start-date" name="topics['+i+'][_joinData][start_date]"> - '+
-			   '<input placeholder="Dev End Date" value="'+relatedTopics[i].end_date+'" class="development-end-date" type="text" id="topics-'+i+'-joindata-end-date" name="topics['+i+'][_joinData][end_date]">'+
-			   '</div>';
+		elem = '<div class="related-project-div">'+
+			   '<p class="related-project-option" t-id="'+relatedProjects[i].id+'">'+relatedProjects[i].label+'</p>'+
+			   '<label>Dev Start/End Date </label><br />'+
+			   '<input placeholder="Dev Start Date" value="'+start_date+'" class="development-start-date" type="text" id="projects-'+i+'-joindata-start-date" name="projects['+i+'][_joinData][start_date]"> - '+
+			   '<input placeholder="Dev End Date" value="'+end_date+'" class="development-end-date" type="text" id="projects-'+i+'-joindata-end-date" name="projects['+i+'][_joinData][end_date]"><br />'+
+			   '<label>Finished year </label><br />'+
+			   '<input placeholder="Finished year" value="'+finished_year+'" class="development-finished-year" type="text" id="projects-'+i+'-joindata-finished-year" name="projects['+i+'][_joinData][finished_year]"><br />';
+
+		elem += '<label>Rol</label><br />'+
+				'<select name="projects['+i+'][_joinData][rol_id]">';
+
+		for(var i=0; i<roles.length; i++){
+			elem += '<option value="'+i+'" '+((rol_id==i)?'selected="selected"':'')+'>'+roles[i]+'</option>';
+		}
+
+		elem += '</select>'+
+			    '</div>';
 
 
-		$('#related-topics-list').append(elem);
+		$('#related-projects-list').append(elem);
 	}
 
-	$('#related-topics-inputs').html('');
-	for(var i=0; i<relatedTopics.length; i++){
-		$('#related-topics-inputs').append('<input id="topics-'+i+'-id" type="hidden" value="'+relatedTopics[i].id+'" name="topics['+i+'][id]">');
+	$('#related-projects-inputs').html('');
+	for(var i=0; i<relatedProjects.length; i++){
+		$('#related-projects-inputs').append('<input id="projects-'+i+'-id" type="hidden" value="'+relatedProjects[i].id+'" name="projects['+i+'][id]">');
 	}
 }
 
-function removeRelatedTopic(relatedTopicId){
+function removeRelatedProject(relatedProjectId){
 	var pos = -1;
-	for(var i=0; i<relatedTopics.length; i++){
-		if(relatedTopics[i].id == relatedTopicId){
+	for(var i=0; i<relatedProjects.length; i++){
+		if(relatedProjects[i].id == relatedProjectId){
 			pos = i;
 		}
 	}
 
 	if(pos != -1){
-		relatedTopics.splice(pos, 1);
+		relatedProjects.splice(pos, 1);
 	}
 }
